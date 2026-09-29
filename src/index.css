@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 250 250 252;
+    --surface: 255 255 255;
+    --surface-2: 248 250 252;
+    --border: 226 232 240;
+    --text: 15 23 42;
+    --text-muted: 100 116 139;
+    --primary: 14 165 233;
+    --primary-hover: 2 132 199;
+    --primary-light: 224 242 254;
+    --success: 22 163 74;
+    --success-light: 220 252 231;
+    --warning: 217 119 6;
+    --warning-light: 254 243 199;
+    --error: 220 38 38;
+    --error-light: 254 226 226;
+    --accent: 13 148 136;
+  }
+
+  .dark {
+    --bg: 2 6 23;
+    --surface: 15 23 42;
+    --surface-2: 30 41 59;
+    --border: 51 65 85;
+    --text: 241 245 249;
+    --text-muted: 148 163 184;
+    --primary: 56 189 248;
+    --primary-hover: 125 211 252;
+    --primary-light: 12 74 110;
+    --success: 74 222 128;
+    --success-light: 20 83 45;
+    --warning: 251 191 36;
+    --warning-light: 120 53 15;
+    --error: 248 113 113;
+    --error-light: 127 29 29;
+    --accent: 45 212 191;
+  }
+}
+
+@layer base {
+  * {
+    border-color: rgb(var(--border));
+  }
+  body {
+    background-color: rgb(var(--bg));
+    color: rgb(var(--text));
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .bg-app { background-color: rgb(var(--bg)); }
+  .bg-surface { background-color: rgb(var(--surface)); }
+  .bg-surface-2 { background-color: rgb(var(--surface-2)); }
+  .text-default { color: rgb(var(--text)); }
+  .text-muted { color: rgb(var(--text-muted)); }
+  .border-default { border-color: rgb(var(--border)); }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all;
+    background-color: rgb(var(--primary));
+    color: white;
+  }
+  .btn-primary:hover {
+    background-color: rgb(var(--primary-hover));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--primary) / 0.3);
+  }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all;
+    background-color: rgb(var(--surface));
+    color: rgb(var(--text));
+    border: 1px solid rgb(var(--border));
+  }
+  .btn-secondary:hover {
+    background-color: rgb(var(--surface-2));
+    border-color: rgb(var(--primary));
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all;
+    color: rgb(var(--text-muted));
+  }
+  .btn-ghost:hover {
+    background-color: rgb(var(--surface-2));
+    color: rgb(var(--text));
+  }
+
+  .card {
+    background-color: rgb(var(--surface));
+    border: 1px solid rgb(var(--border));
+    @apply rounded-xl;
+  }
+
+  .input {
+    @apply w-full rounded-lg px-3 py-2 text-sm transition-all outline-none;
+    background-color: rgb(var(--surface-2));
+    border: 1px solid rgb(var(--border));
+    color: rgb(var(--text));
+  }
+  .input:focus {
+    border-color: rgb(var(--primary));
+    box-shadow: 0 0 0 3px rgba(var(--primary) / 0.1);
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--border));
+    border-radius: 3px;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.3s ease-out; }
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in { animation: slide-in 0.25s ease-out; }
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.animate-pulse-soft { animation: pulse-soft 1.5s ease-in-out infinite; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin 1s linear infinite; }
